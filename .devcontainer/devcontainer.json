@@ -1,0 +1,22 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/dotnet-mssql
+{
+	"name": ".NET (C#), Node.js (TypeScript) & MS SQL",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-dotnettools.csdevkit",
+				"ms-mssql.mssql",
+				"dsznajder.es7-react-js-snippets",
+				"burkeholland.simple-react-snippets",
+				"dbaeumer.vscode-eslint"
+			]
+		}
+	},
+
+	// postCreateCommand.sh parameters: $1=SA password, $2=dacpac path, $3=sql script(s) path
+	"postCreateCommand": "bash .devcontainer/postCreateCommand.sh"
+}

@@ -1,58 +1,59 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
 
-interface Forecast {
-    date: string;
-    temperatureC: number;
-    temperatureF: number;
-    summary: string;
-}
-
-function App() {
-    const [forecasts, setForecasts] = useState<Forecast[]>();
-
-    useEffect(() => {
-        populateWeatherData();
-    }, []);
-
-    const contents = forecasts === undefined
-        ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-        : <table className="table table-striped" aria-labelledby="tableLabel">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Temp. (C)</th>
-                    <th>Temp. (F)</th>
-                    <th>Summary</th>
-                </tr>
-            </thead>
-            <tbody>
-                {forecasts.map(forecast =>
-                    <tr key={forecast.date}>
-                        <td>{forecast.date}</td>
-                        <td>{forecast.temperatureC}</td>
-                        <td>{forecast.temperatureF}</td>
-                        <td>{forecast.summary}</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>;
-
+function App(): React.JSX.Element {
+    const columns = [
+      { id: 'name', label: 'Name' },
+      { id: 'age', label: 'Age' },
+      { id: 'email', label: 'Email' },
+    ];
+  
+    const rows = [
+      { id: 1, name: 'John Doe', age: 30, email: 'john@example.com' },
+      { id: 2, name: 'Jane Smith', age: 25, email: 'jane@example.com' },
+      { id: 3, name: 'Emily Johnson', age: 40, email: 'emily@example.com' },
+      { id: 4, name: 'Michael Brown', age: 35, email: 'michael@example.com' },
+      { id: 5, name: 'Chris Green', age: 29, email: 'chris@example.com' },
+      { id: 6, name: 'Anna White', age: 32, email: 'anna@example.com' },
+      { id: 7, name: 'James Black', age: 28, email: 'james@example.com' },
+      { id: 8, name: 'Laura Blue', age: 45, email: 'laura@example.com' },
+      { id: 9, name: 'Paul Red', age: 50, email: 'paul@example.com' },
+      { id: 10, name: 'Diana Violet', age: 23, email: 'diana@example.com' },
+      { id: 11, name: 'George Yellow', age: 38, email: 'george@example.com' },
+      { id: 12, name: 'Olivia Orange', age: 27, email: 'olivia@example.com' },
+      { id: 13, name: 'Sophia Gray', age: 31, email: 'sophia@example.com' },
+      { id: 14, name: 'Ethan Purple', age: 41, email: 'ethan@example.com' },
+      { id: 15, name: 'Mia Cyan', age: 26, email: 'mia@example.com' },
+      { id: 16, name: 'Jacob Magenta', age: 34, email: 'jacob@example.com' },
+      { id: 17, name: 'Isabella Teal', age: 22, email: 'isabella@example.com' },
+      { id: 18, name: 'William Gold', age: 47, email: 'william@example.com' },
+      { id: 19, name: 'Ava Silver', age: 37, email: 'ava@example.com' },
+      { id: 20, name: 'Elijah Platinum', age: 33, email: 'elijah@example.com' },
+    ];
+  
+    const handleRowSelectionChange = (selectedIds: (number | string)[]) => {
+      console.log('Selected Rows:', selectedIds);
+    };
+  
     return (
-        <div>
-            <h1 id="tableLabel">Weather forecast</h1>
-            <p>This component demonstrates fetching data from the server.</p>
-            {contents}
+      <>
+        <div className="container mt-4">
+          <h4>Customizable Table</h4>
+            {/*
+            <CustomizableTable
+              columns={columns}
+              rows={rows}
+              onRowSelectionChange={handleRowSelectionChange}
+              paginationOptions={{
+                rowsPerPage: 5,
+                rowsPerPageOptions: [5, 10, 15],
+              }}
+              isSelectable={false}
+            />
+            */}
         </div>
-    );
-
-    async function populateWeatherData() {
-        const response = await fetch('weatherforecast');
-        if (response.ok) {
-            const data = await response.json();
-            setForecasts(data);
-        }
-    }
-}
+      </>
+    )
+  }
 
 export default App;
